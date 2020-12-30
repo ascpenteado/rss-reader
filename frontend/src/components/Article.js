@@ -10,7 +10,7 @@ function Article({ item }) {
       )}
       <div className="flex-col p-4">
         <h2 className="text-lg font-bold">{item.title}</h2>
-        <p className="text-xs mt-1 mb-1">{item.isoDate}</p>
+        <p className="text-xs mt-1 mb-1">{item.itemDate}</p>
         <p className="text-base mt-3 mb-1">{item.contentSnippet}</p>
         <a target="_blank" rel="noreferrer" href={item.link}>
           <button className="bg-blue-500 text-white p-2 text-sm rounded-md mt-2">Read article</button>

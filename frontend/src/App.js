@@ -19,7 +19,7 @@ function App() {
   };
 
   return (
-    <div className=" flex-col min-h-screen text-gray-700 bg-gray-100">
+    <div className="min-h-screen text-gray-700 bg-gray-100">
       <Nav handleSubmit={handleSubmit} setFeedUrl={setFeedUrl} />
       <main className="container px-4 mx-auto pt-4">
         <section>

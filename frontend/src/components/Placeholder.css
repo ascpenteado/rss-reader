@@ -1,0 +1,7 @@
+.placeholder-btn {
+  @apply bg-blue-500 text-white p-2 rounded-md mr-4 mt-2 transition-all;
+}
+
+.placeholder-btn:hover {
+  @apply bg-blue-700;
+}

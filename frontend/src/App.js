@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import Loader from "./components/Loader";
 import Placeholder from "./components/Placeholder";
 import Nav from "./components/Nav";
 import Article from "./components/Article";
@@ -7,6 +8,7 @@ import Article from "./components/Article";
 function App() {
   const [feedUrl, setFeedUrl] = useState("");
   const [feed, setFeed] = useState("");
+  const [promiseInProgress, setPromiseInProgress] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -14,8 +16,10 @@ function App() {
   };
 
   const getFeed = async (feedUrl) => {
+    setPromiseInProgress(true);
     const response = await axios.post("http://localhost:5000", { url: feedUrl });
     setFeed(response.data);
+    setPromiseInProgress(false);
   };
 
   return (
@@ -23,8 +27,12 @@ function App() {
       <Nav handleSubmit={handleSubmit} setFeedUrl={setFeedUrl} />
       <main className="container px-4 mx-auto pt-4">
         <section>
-          {feed.length === 0 ? (
-            <Placeholder getFeed={getFeed} />
+          {promiseInProgress === true ? (
+            <Loader />
+          ) : feed.length === 0 ? (
+            <div>
+              <Placeholder getFeed={getFeed} />
+            </div>
           ) : (
             feed.map((item) => {
               return <Article item={item} key={item.guid} />;

@@ -11,7 +11,7 @@ app.use(express.json());
 app.post("/", async (req, res) => {
   const rssUrl = req.body.url;
   if (rssUrl) {
-    const feed = await handleRss.parseFeed(rssUrl);
+    const feed = await handleRss.getFeedItems(rssUrl);
     return res.json(feed);
   } else {
     return res.status(400).json({ message: "URL can't be empty" });

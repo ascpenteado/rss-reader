@@ -1,5 +1,6 @@
 {
-  "name": "frontend",
+  "name": "rss-reader",
+  "description": "A simple tool for listing RSS content.",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

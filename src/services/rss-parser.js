@@ -4,8 +4,8 @@ const parser = new RSSParser();
 
 const getFeedItems = async (feedUrl) => {
   if (feedUrl) {
-    // const CORS_PROXY = "https://cors-anywhere.herokuapp.com/";
-    const feed = await parser.parseURL(feedUrl);
+    const CORS_PROXY = "https://cors-anywhere.herokuapp.com/";
+    const feed = await parser.parseURL(CORS_PROXY + feedUrl);
     const items = feed.items;
     const feedItems = items
       .filter((item) => {

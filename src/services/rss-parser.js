@@ -1,10 +1,11 @@
-const RSSParser = require("rss-parser");
+import RSSParser from "rss-parser";
+import { DateTime } from "luxon";
 const parser = new RSSParser();
-const { DateTime } = require("luxon");
 
-const handleRss = {
-  getFeedItems: async (feedUrl) => {
-    const feed = await parser.parseURL(feedUrl);
+const getFeedItems = async (feedUrl) => {
+  if (feedUrl) {
+    const CORS_PROXY = "https://cors-anywhere.herokuapp.com/";
+    const feed = await parser.parseURL(CORS_PROXY + feedUrl);
     const items = feed.items;
     const feedItems = items
       .filter((item) => {
@@ -16,14 +17,11 @@ const handleRss = {
       .map((item) => {
         const dt = DateTime.fromISO(item.isoDate);
         let itemDate = `${dt.c.month}/${dt.c.day}/${dt.c.year}`;
-
         return { ...item, itemDate };
       })
-      .sort((a, b) => {
-        DateTime.fromISO(a.isoDate) - DateTime.fromISO(b.isoDate);
-      });
+      .sort((a, b) => DateTime.fromISO(b.isoDate) - DateTime.fromISO(a.isoDate));
     return feedItems;
-  },
+  }
 };
 
-module.exports = handleRss;
+export default getFeedItems;

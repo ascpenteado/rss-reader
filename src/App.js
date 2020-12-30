@@ -1,5 +1,6 @@
 import { useState } from "react";
-import axios from "axios";
+import getFeedItems from "./services/rss-parser";
+
 import Loader from "./components/Loader";
 import Placeholder from "./components/Placeholder";
 import Nav from "./components/Nav";
@@ -17,8 +18,8 @@ function App() {
 
   const getFeed = async (feedUrl) => {
     setPromiseInProgress(true);
-    const response = await axios.post("http://localhost:5000", { url: feedUrl });
-    setFeed(response.data);
+    const newFeed = await getFeedItems(feedUrl);
+    setFeed(newFeed);
     setPromiseInProgress(false);
   };
 

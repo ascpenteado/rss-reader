@@ -14,6 +14,7 @@ function Nav({ handleSubmit, setFeedUrl }) {
           id="rssUrl"
           placeholder="https://www.example.com/.rss"
           onChange={(e) => setFeedUrl(e.target.value)}
+          required
         />
         <button
           className="bg-green-500 text-white p-2 rounded-md mt-4 md:mt-0 transition-all hover:bg-green-400"
